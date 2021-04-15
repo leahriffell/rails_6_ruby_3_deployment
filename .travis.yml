@@ -1,0 +1,23 @@
+language: ruby
+rbenv:
+- 3.0.1
+addons:
+  postgresql: 9.6
+script:
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: YO1J7uatB7V1EvcmGuRAC6qaBINn3oyiFzF/leQqgQfueiFdbEZAzDtzdVXAAbpzRuX3n6gcamCO5m6ja5fIso1q2Xm7z+Sv+qzasvHoBFHLVXQzywBQ4z2/yqzictcslNEHanjKrFKCG6X1rQSlfiou+WZsuLSJQg/N5VgKGG/LJoubZs4oVw8tPoBRDnf0tc1JDut3H6nccX8gmk34UMXE9EmFTh+9foaEazhKqw4LOiDQNU6N3cTDZ7ewwlO7r1oWhpbruZGbPpGc+6WYVY6iR49BpaUfrn6O0IVWkwF0QFJJF262c2tL6fEsZCq5AIX4KmyvrX+mUmH5xaTTwwgLDLo/NtOxNkVJ+Fnfld2aCMM9xES+JyTgG7R2ZC4YoUx0KhZpzxDDSrOf0dgfK7UJCNMxK9wWZj/0SBq4fY85UZx2FFxtafchQFGzs4gitS1i9VCQTcFiksnNe/KHxmw538YWwa6o5r3bneCvw/o0hLvvJdJIlOJYVYfRp1g5JfwqRj7kxqVcYEweU1iM4zfvq5tXQiIIpGOafVd7MVC7/YhAny6f1V0w43ogJ8a7LnRzPpyxC4zyVCU+rUQjxHCJAyWOJIl0FCzal0pJDWuFHFgin6FQCk2PCXcv5bxfQ0OCCbOjgTEdt/n1QohiJsel0MIKeoqJ9b2gkuacHL4=
+  app: rails-6-ruby-3-deployment
+  on:
+    repo: leahriffell/rails_6_ruby_3_deployment
+    branch: main
+  skip_cleanup: 'true'
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+cache:
+- bundler
